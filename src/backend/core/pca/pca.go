@@ -43,7 +43,7 @@ func Fit(x *matrix.Matrix, k int) (*Model, error) {
 	}
 	res, err := svd.Decompose(a, k)
 	if errors.Is(err, svd.ErrNoVariance) {
-		return nil, errors.New("pca: semua gambar identis, tidak ada variansi positif pca")
+		return nil, errors.New("pca: semua image identis, tidak ada variansi positif pca")
 	}
 	if err != nil {
 		return nil, err

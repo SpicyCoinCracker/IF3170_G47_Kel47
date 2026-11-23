@@ -21,7 +21,7 @@ const (
 var (
 	nameRe     = regexp.MustCompile(`^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$`)
 	ErrInvalid = errors.New("invalid name")
-	ErrExists  = errors.New("gambar sudah ada dalam dataset")
+	ErrExists  = errors.New("image sudah ada dalam dataset")
 	imageExtOK = map[string]bool{".jpg": true, ".jpeg": true, ".png": true}
 )
 
