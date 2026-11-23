@@ -36,6 +36,8 @@ func (a *API) Routes() http.Handler {
 	mux.HandleFunc("POST /api/recognize", a.recognize)
 	mux.HandleFunc("POST /api/dataset/images", a.addImage)
 	mux.HandleFunc("GET /api/evaluate", a.evaluate)
+	mux.HandleFunc("GET /api/model/eigenfaces", a.eigenfaces)
+	mux.HandleFunc("GET /api/model/eigenfaces/{n}", a.eigenfaceImage)
 	return middleware(mux)
 }
 
