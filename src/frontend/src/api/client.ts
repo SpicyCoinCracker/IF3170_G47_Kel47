@@ -52,3 +52,7 @@ export function addImage(file: File, subject: string) {
   f.append("subject", subject);
   return request<AddResponse>("/api/dataset/images", { method: "POST", body: f });
 }
+
+export interface Eigenface { index: number; singular: number; url: string }
+export interface EigenfaceGallery { k: number; meanUrl: string; components: Eigenface[] }
+export const getEigenfaces = () => request<EigenfaceGallery>("/api/model/eigenfaces");
