@@ -18,7 +18,7 @@ func (a *API) eigenfaces(w http.ResponseWriter, r *http.Request) {
 		writeErr(w, 503, err)
 		return
 	}
-	v := m.BuiltAt.UnixNano() // cache-buster: URLs change whenever the model is rebuilt
+	v := m.BuiltAt.UnixNano()
 	type comp struct {
 		Index    int     `json:"index"`
 		Singular float64 `json:"singular"`
@@ -33,8 +33,6 @@ func (a *API) eigenfaces(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-// eigenfaceImage renders component n (1..k) or the mean face (n=0) as a PNG.
-// Display normalisation is applied to a copy only; the model basis is untouched.
 func (a *API) eigenfaceImage(w http.ResponseWriter, r *http.Request) {
 	m, err := a.Mgr.Model()
 	if err != nil {
@@ -62,7 +60,7 @@ func (a *API) eigenfaceImage(w http.ResponseWriter, r *http.Request) {
 			if hi > lo {
 				vec[i] = 255 * (x - lo) / (hi - lo)
 			} else {
-				vec[i] = 128 // constant image when the range is zero
+				vec[i] = 128
 			}
 		}
 	}

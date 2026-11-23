@@ -3,7 +3,6 @@ import { EigenfaceGallery, getEigenfaces, imageUrl } from "../api/client";
 
 const STEP = 24;
 
-// Reloads whenever `refreshKey` changes (i.e. after the model was rebuilt).
 export default function EigenfacePage({ refreshKey }: { refreshKey: number }) {
   const [data, setData] = useState<EigenfaceGallery | null>(null);
   const [error, setError] = useState("");

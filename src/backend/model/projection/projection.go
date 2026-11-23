@@ -1,4 +1,3 @@
-// Package projection maps vectors/images into a model's eigenspace. Read-only: never mutates the model.
 package projection
 
 import (
