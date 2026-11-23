@@ -27,6 +27,7 @@ Eigenface face recognition. Go backend, all matrix/Jacobi-eigen/SVD/PCA/projecti
 | `POST /api/recognize` | multipart `image` (PNG/JPEG ≤ 8 MB), optional `threshold` → `{subjectId, subjectName, distance, matchedImage, matchedImageUrl, known, threshold, k, millis}`; 503 if model not ready |
 | `POST /api/dataset/images` | multipart `image` + `subject` (existing or new) → 201 with new status; 400 invalid, 409 duplicate, 422 rebuild failed |
 | `POST /api/model/rebuild` | optional JSON `{"k": 80}` |
+| `GET /api/model/eigenfaces` | mean face URL + `[{index, singular, url}]`; PNGs at `/api/model/eigenfaces/{n}.png` (0 = mean), display-normalised copies |
 | `GET /api/evaluate` | accuracy + avg ms/query on the validation split for the current k (use with rebuild for k comparison) |
 
 ## Limitations
@@ -35,4 +36,4 @@ No eigenface-gallery endpoint, no face detection, PNG/JPEG only; Gram-matrix SVD
 ## Frontend (`src/frontend`, React + TypeScript + Vite)
 - Requires Node >= 18. `cd src/frontend && npm install && npm run dev` (open http://localhost:5173; `/api` is proxied to the backend on :8080 — start the backend first).
 - Production build: `npm run build` (output `dist/`); set `VITE_API_BASE` to the backend URL if not served from the same origin (the backend allows CORS).
-- Pages: Gallery (paged subjects, click for all images), Recognition (preview, optional threshold, result with matched image + distance), Dataset & Model (add image to existing/new subject, change k and rebuild, validation accuracy).
+- Pages: Eigenfaces (mean face + components with singular values, refreshed after each rebuild), Gallery (paged subjects, click for all images), Recognition (preview, optional threshold, result with matched image + distance), Dataset & Model (add image to existing/new subject, change k and rebuild, validation accuracy).
